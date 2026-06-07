@@ -17,7 +17,7 @@ export function Hero() {
 
         <div className="mt-8 flex items-center justify-center gap-3">
           <Link
-            href="/login"
+            href="/dashboard"
             className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
             id="hero-get-started"
           >
@@ -39,7 +39,7 @@ export function Hero() {
             </svg>
           </Link>
           <Link
-            href="/login"
+            href="/dashboard"
             className="inline-flex items-center rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:bg-surface-secondary"
             id="hero-find-match"
           >

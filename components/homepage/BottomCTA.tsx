@@ -13,14 +13,14 @@ export function BottomCTA() {
         
         <div className="mt-10 flex items-center justify-center gap-4">
           <Link
-            href="/login"
+            href="/dashboard"
             className="rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
             id="bottom-start-free"
           >
             Start for free
           </Link>
           <Link
-            href="/login"
+            href="/dashboard"
             className="rounded-md border border-border-muted bg-transparent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
             id="bottom-find-match"
           >

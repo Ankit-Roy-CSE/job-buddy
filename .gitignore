@@ -45,4 +45,5 @@ context
 AGENTS.md
 CLAUDE.md
 /.agents/*
-
+memory.md
+.env.local

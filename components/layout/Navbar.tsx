@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { UserMenu } from "@/components/auth/UserMenu";
+
 export function Navbar() {
   return (
     <header className="w-full bg-surface border-b border-border">
@@ -49,13 +51,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          <Link
-            href="/login"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            id="nav-start-free"
-          >
-            Start for free
-          </Link>
+          <UserMenu />
         </div>
       </nav>
     </header>

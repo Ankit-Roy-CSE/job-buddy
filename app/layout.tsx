@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import { AuthProvider } from "@/components/auth/AuthProvider";
+import { PostHogProvider } from "@/components/PostHogProvider";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -22,7 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
       <body className="min-h-screen bg-background font-sans text-text-primary">
-        {children}
+        <PostHogProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
