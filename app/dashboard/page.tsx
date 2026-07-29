@@ -5,14 +5,21 @@ import { createInsforgeServer } from "@/lib/insforge-server";
 
 export default async function DashboardPage() {
   const insforge = await createInsforgeServer();
-  const { data } = await insforge.auth.getCurrentUser();
+  let authData = null;
+  
+  try {
+    const { data } = await insforge.auth.getCurrentUser();
+    authData = data;
+  } catch (error) {
+    console.error("[DashboardPage] Error fetching user:", error);
+  }
 
-  if (!data.user) {
+  if (!authData?.user) {
     redirect("/login?error=auth_required");
   }
 
   const displayName =
-    data.user.profile?.name ?? data.user.email?.split("@")[0] ?? "there";
+    authData?.user?.profile?.name ?? authData?.user?.email?.split("@")[0] ?? "there";
 
   return (
     <div className="min-h-screen bg-background">

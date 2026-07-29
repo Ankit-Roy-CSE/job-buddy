@@ -7,17 +7,29 @@ import { createInsforgeServer } from "@/lib/insforge-server";
 
 export default async function ProfilePage() {
   const insforge = await createInsforgeServer();
-  const { data: authData } = await insforge.auth.getCurrentUser();
+  
+  let authData = null;
+  let profileData = null;
 
-  if (!authData.user) {
-    redirect("/login?error=auth_required");
+  try {
+    const { data } = await insforge.auth.getCurrentUser();
+    authData = data;
+    
+    if (authData?.user) {
+      const { data: pData } = await insforge.database
+        .from("profiles")
+        .select("*")
+        .eq("id", authData.user.id)
+        .single();
+      profileData = pData;
+    }
+  } catch (error) {
+    console.error("[ProfilePage] Error fetching user/profile:", error);
   }
 
-  const { data: profileData } = await insforge.database
-    .from("profiles")
-    .select("*")
-    .eq("id", authData.user.id)
-    .single();
+  if (!authData?.user) {
+    redirect("/login?error=auth_required");
+  }
 
   // Initialize with empty defaults if no profile exists
   const profile = profileData || {
